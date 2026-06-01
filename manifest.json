@@ -1,0 +1,94 @@
+{
+  "manifest_version": 3,
+  "name": "SoldSnap — eBay Sold History Checker & Image Downloader",
+  "version": "1.0.0",
+  "description": "Powerful SoldSnap tool to check eBay sold history, scrape product data from AliExpress, Amazon, and eBay, and bulk download images. Essential for dropshipping, market research, and price tracking.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": [
+    "storage",
+    "downloads",
+    "tabs",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "*://*.amazon.com/*",
+    "*://*.amazon.co.uk/*",
+    "*://*.amazon.com.au/*",
+    "*://*.amazon.ca/*",
+    "*://*.amazon.in/*",
+    "*://*.amazon.de/*",
+    "*://*.amazon.fr/*",
+    "*://*.amazon.es/*",
+    "*://*.amazon.it/*",
+    "*://*.aliexpress.com/*",
+    "*://*.aliexpress.us/*",
+    "*://*.ebay.com/*",
+    "*://*.ebay.co.uk/*",
+    "*://*.ebay.com.au/*",
+    "*://*.ebay.ca/*",
+    "*://*.ebay.de/*",
+    "*://*.ebay.ie/*",
+    "*://*.ebay.fr/*",
+    "*://*.ebay.es/*",
+    "*://*.ebay.it/*",
+    "https://api.taobao.com/*",
+    "https://eco.taobao.com/*",
+    "https://gw.api.taobao.com/*",
+    "https://api.aliexpress.com/*",
+    "https://gw.api.alibaba.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background/index.ts",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "src/popup/index.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.amazon.com/*",
+        "*://*.amazon.co.uk/*",
+        "*://*.amazon.com.au/*",
+        "*://*.amazon.ca/*",
+        "*://*.amazon.in/*",
+        "*://*.amazon.de/*",
+        "*://*.amazon.fr/*",
+        "*://*.amazon.es/*",
+        "*://*.amazon.it/*"
+      ],
+      "js": [
+        "src/content/amazon.tsx"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.aliexpress.com/*",
+        "*://*.aliexpress.us/*"
+      ],
+      "js": [
+        "src/content/aliexpress.tsx"
+      ]
+    },
+    {
+      "matches": [
+        "*://*.ebay.com/*",
+        "*://*.ebay.co.uk/*",
+        "*://*.ebay.com.au/*",
+        "*://*.ebay.ca/*",
+        "*://*.ebay.de/*",
+        "*://*.ebay.ie/*",
+        "*://*.ebay.fr/*",
+        "*://*.ebay.es/*",
+        "*://*.ebay.it/*"
+      ],
+      "js": [
+        "src/content/ebay.tsx"
+      ]
+    }
+  ]
+}
